@@ -16,7 +16,7 @@ export const state =()=>{
 
 
 //同步修改states
-/* export const mutations={
+export const mutations={
     setUserInfo:(state,data)=>{
         // console.log(data);
         state.userInfo=data
@@ -29,24 +29,8 @@ export const state =()=>{
             user:{}
         }
     }
-} */
-
-export const mutations=()=>{
-    return{
-        setUserInfo:(state,data)=>{
-            // console.log(data);
-            state.userInfo=data
-    
-            // console.log(state.userInfo);
-        },
-        clearUserInfo(state){
-            state.userInfo={
-                token:"",
-                user:{}
-            }
-        }
-    }
 }
+
 
 //异步修改states
 export const actions={
@@ -61,7 +45,7 @@ export const actions={
             commit("setUserInfo", res.data);
 
             Promise.resolve()
-            // 调用resolve执行外部调用时传入的回调函数，
+            // 调用resolve执行外部调用时传入的回调函数
           });
     }
     
