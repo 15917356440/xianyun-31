@@ -82,7 +82,13 @@ data(){
     methods: {
         // tab切换时触发
         handleSearchTab(item, index){
-            
+            if(index==1){
+              this.$confirm("目前暂不支持往返，请使用单程选票！", '提示', {
+                confirmButtonText: '确定',
+                showCancelButton: false,
+                type: 'warning'
+              })
+            }
         },
         
         // 出发城市输入框获得焦点时触发
@@ -106,6 +112,11 @@ data(){
                   value:v.name.replace("市","")
                 }
               })
+
+              //如果用户不选择下拉菜单里的值，默认选择下拉菜单中的第一个值
+              this.form.departCity=newdata[0].value
+              this.form.departCode=newdata[0].sort
+
               cd(newdata)
             })
         },
@@ -128,6 +139,10 @@ data(){
                   value:v.name.replace("市","")
                 }
               })
+
+              this.form.destCity=newdata[0].value
+              this.form.destCode=newdata[0].sort
+
               cb(newdata)
             })
         },
@@ -153,7 +168,11 @@ data(){
 
         // 触发和目标城市切换时触发
         handleReverse(){
-            
+            const {departCity,departCode,destCity,destCode}=this.form
+            this.form.departCity=destCity
+            this.form.departCode=destCode
+            this.form.destCity=departCity
+            this.form.destCode=departCode
         },
 
         // 提交表单是触发
